@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Reveal } from './Reveal';
 import { Icon } from '@iconify/react';
 import LogoLoop from '../T.Components/Skillsloop';
 import {
@@ -145,59 +146,60 @@ export default function Skill() {
     return (
         <div className="text-white w-full py-20 pb-40 relative group/section">
             <div className="relative w-full max-w-6xl mx-auto min-h-[600px] transition-all duration-500">
+                <Reveal width="100%">
+                    <div className="flex justify-center mb-16">
 
-                <div className="flex justify-center mb-16">
-
-                </div>
-
-                {!isExpanded ? (
-                    <>
-                        {renderSkillSection('Frontend Development', frontendSkills, 'left')}
-                        {renderSkillSection('Backend Development', backendSkills, 'right')}
-                        {renderSkillSection('Tools & Others', toolsSkills, 'left')}
-                    </>
-                ) : (
-                    <div className="animate-fadeIn flex flex-col gap-12 pb-20">
-
-                        <div className="flex flex-col items-center">
-                            <h3 className="text-xl font-bold text-center mb-8">
-                                <span className="text-blue-500 text-2xl">Frontend</span>{' '}
-                                <span className=" text-white text-2xl">Development</span>
-                            </h3>
-                            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 place-items-center">
-                                {frontendSkills.map((skill, index) => (
-                                    <SkillCard key={`front-${index}`} item={skill} />
-                                ))}
-                            </div>
-                        </div>
-
-
-                        <div className="flex flex-col items-center">
-                            <h3 className="text-xl font-bold text-center mb-8">
-                                <span className="text-blue-500 text-2xl">Backend</span>{' '}
-                                <span className=" text-white text-2xl">Development</span>
-                            </h3>
-                            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 place-items-center place-content-center">
-                                {backendSkills.map((skill, index) => (
-                                    <SkillCard key={`back-${index}`} item={skill} />
-                                ))}
-                            </div>
-                        </div>
-
-
-                        <div className="flex flex-col items-center">
-                            <h3 className="text-xl font-bold text-center mb-8">
-                                <span className="text-blue-500 text-2xl">Tools</span>{' '}
-                                <span className=" text-white text-2xl">& Others</span>
-                            </h3>
-                            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 place-items-center">
-                                {toolsSkills.map((skill, index) => (
-                                    <SkillCard key={`tool-${index}`} item={skill} />
-                                ))}
-                            </div>
-                        </div>
                     </div>
-                )}
+
+                    {!isExpanded ? (
+                        <>
+                            {renderSkillSection('Frontend Development', frontendSkills, 'left')}
+                            {renderSkillSection('Backend Development', backendSkills, 'right')}
+                            {renderSkillSection('Tools & Others', toolsSkills, 'left')}
+                        </>
+                    ) : (
+                        <div className="animate-fadeIn flex flex-col gap-12 pb-20">
+
+                            <div className="flex flex-col items-center">
+                                <h3 className="text-xl font-bold text-center mb-8">
+                                    <span className="text-blue-500 text-2xl">Frontend</span>{' '}
+                                    <span className=" text-white text-2xl">Development</span>
+                                </h3>
+                                <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 place-items-center">
+                                    {frontendSkills.map((skill, index) => (
+                                        <SkillCard key={`front-${index}`} item={skill} />
+                                    ))}
+                                </div>
+                            </div>
+
+
+                            <div className="flex flex-col items-center">
+                                <h3 className="text-xl font-bold text-center mb-8">
+                                    <span className="text-blue-500 text-2xl">Backend</span>{' '}
+                                    <span className=" text-white text-2xl">Development</span>
+                                </h3>
+                                <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 place-items-center place-content-center">
+                                    {backendSkills.map((skill, index) => (
+                                        <SkillCard key={`back-${index}`} item={skill} />
+                                    ))}
+                                </div>
+                            </div>
+
+
+                            <div className="flex flex-col items-center">
+                                <h3 className="text-xl font-bold text-center mb-8">
+                                    <span className="text-blue-500 text-2xl">Tools</span>{' '}
+                                    <span className=" text-white text-2xl">& Others</span>
+                                </h3>
+                                <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 place-items-center">
+                                    {toolsSkills.map((skill, index) => (
+                                        <SkillCard key={`tool-${index}`} item={skill} />
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </Reveal>
             </div>
 
 
