@@ -58,23 +58,9 @@ export default function Journey() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/experience')
-            .then(res => {
-                if (!res.ok) throw new Error('Failed to fetch');
-                return res.json();
-            })
-            .then(data => {
-                if (data && data.length > 0) {
-                    setExperience(data);
-                } else {
-                    setExperience(ExperienceData);
-                }
-            })
-            .catch(err => {
-                console.error('Error fetching experience, using mock data:', err);
-                setExperience(ExperienceData);
-            })
-            .finally(() => setLoading(false));
+        // Mock data used since backend route /api/experience does not exist
+        setExperience(ExperienceData);
+        setLoading(false);
     }, []);
 
     return (

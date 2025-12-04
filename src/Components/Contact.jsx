@@ -1,9 +1,9 @@
 import React from 'react'
-import {useState, useEffect} from 'react'     
+import { useState, useEffect } from 'react'
 export default function Contact() {
     const [contact, setContact] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/api/contact')
+        fetch('http://localhost:5000/api/contacts')
             .then(res => res.json())
             .then(data => setContact(data))
             .catch(err => console.error('Error fetching contact:', err));
