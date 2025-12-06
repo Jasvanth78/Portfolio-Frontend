@@ -10,6 +10,8 @@ import Skill from './Components/Skill';
 import Journey from './Components/Journey';
 import Projects from './Components/Projects';
 import Contact from './Components/Contact';
+import ContactPage from './Components/ContactPage';
+import Footer from './Components/Footer';
 
 function Portfolio() {
   return (
@@ -33,6 +35,7 @@ function Portfolio() {
         <section id="contact" className="min-h-screen w-full">
           <Contact />
         </section>
+        <Footer />
       </div>
     </div>
   );
@@ -43,6 +46,7 @@ export default function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Portfolio />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/admin/quotes" element={<AdminQuotes />} />
         <Route path="/admin/skills" element={<AdminSkills />} />
       </Routes>

@@ -100,7 +100,7 @@ export default function Home() {
                                 <img
                                     src={img}
                                     alt="Jasvanth"
-                                    className="relative w-80 h-80 md:w-96 md:h-96 object-cover object-top rounded-2xl shadow-2xl transform transition duration-500 hover:scale-105"
+                                    className="relative w-80 h-80 md:w-96 md:h-96 object-cover object-center rounded-2xl shadow-2xl"
                                 />
                             </div>
                         </div>

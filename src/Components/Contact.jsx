@@ -28,16 +28,16 @@ export default function Contact() {
                 </p>
 
                 <Link
-                    to="/login"
+                    to="/contact"
                     className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 transform hover:-translate-y-1"
                 >
-                    <Icon icon="mdi:login" className="text-2xl" />
+                    <Icon icon="mdi:email-outline" className="text-2xl" />
                     <span>Contact Me</span>
                 </Link>
 
                 <p className="text-gray-500 text-sm mt-12 max-w-md mx-auto">
-                    The best way to ensure I see your message is through the portal.
-                    It's quick, secure, and helps me keep track of all our conversations.
+                    Click the button above to send me a message directly.
+                    I usually respond within 24 hours.
                 </p>
             </motion.div>
         </div>

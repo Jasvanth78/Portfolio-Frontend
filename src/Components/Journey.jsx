@@ -1,99 +1,142 @@
 import React, { useState, useEffect } from 'react';
-import { Reveal } from './Reveal';
+import { motion } from 'motion/react';
+import { Icon } from '@iconify/react';
 
-const EducationData = [
-    {
-        id: 1,
-        year: "2023 - 2026",
-        title: "Bachelor of Computer Applications",
-        institution: "Bharathiar University",
-        description: "Bharathidasan College of Arts and Science",
+const TimelineItem = ({ item, type, index }) => {
+    const isEducation = type === 'education';
 
-    },
-    {
-        id: 2,
-        year: "2018 - 2020",
-        title: "Higher Secondary Education",
-        institution: "Govt.Higher Secondary School - Bunglowpudur",
-        description: "Completed with a focus on Commerce  and Computer Science.",
-
-    }
-];
-
-const ExperienceData = [
-    {
-        _id: "1",
-        name: "Full Stack Developer Intern",
-        description: "Worked on developing scalable web applications using React and Node.js.",
-        year: "2025 - Present"
-    }
-];
-
-const JourneyCard = ({ item, type }) => {
     return (
-        <div className="group relative flex items-center mb-8 w-full">
+        <motion.div
+            initial={{ opacity: 0, x: isEducation ? -50 : 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.2 }}
+            className={`flex flex-col md:flex-row items-center justify-between w-full mb-8 relative ${isEducation ? 'md:flex-row-reverse' : ''}`}
+        >
+            {/* Content Card */}
+            <div className={`w-full md:w-5/12 ${isEducation ? 'text-center md:text-right' : 'text-center md:text-left'}`}>
+                <div className="p-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl hover:border-blue-500/50 hover:bg-white/10 transition-all duration-300 shadow-xl group">
+                    <div className={`flex flex-col gap-2 ${isEducation ? 'items-center md:items-end' : 'items-center md:items-start'}`}>
+                        <div className="flex items-center gap-2 mb-2">
+                            {!isEducation && item.icon && <Icon icon={item.icon} className="text-blue-500 text-xl hidden md:block" />}
+                            <span className="text-blue-400 font-mono text-sm border border-blue-500/20 px-2 py-1 rounded bg-blue-500/5">
+                                {item.year}
+                            </span>
+                            {isEducation && item.icon && <Icon icon={item.icon} className="text-blue-500 text-xl hidden md:block" />}
+                        </div>
 
-            <div className={`absolute top-0 bottom-0 w-1 bg-gray-700 group-hover:bg-blue-500 transition-colors duration-300 ${type === 'education' ? 'right-0 mr-[-2px]' : 'left-0 ml-[-2px]'}`}></div>
+                        <h3 className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors">
+                            {item.title || item.name}
+                        </h3>
 
+                        {item.institution && (
+                            <h4 className="text-gray-400 text-sm font-medium">
+                                {item.institution}
+                            </h4>
+                        )}
 
-            <div className={`absolute w-4 h-4 rounded-full border-2 border-blue-500 bg-gray-900 group-hover:bg-blue-500 transition-all duration-300 z-10 ${type === 'education' ? 'right-0 translate-x-1/2' : 'left-0 -translate-x-1/2'}`}></div>
-
-
-            <div className={`relative w-[90%] p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-500 ease-out hover:w-full hover:bg-white/10 hover:border-blue-500/50 ${type === 'education' ? 'mr-8 text-right' : 'ml-8 text-left'}`}>
-                <div className={`flex flex-col ${type === 'education' ? 'items-end' : 'items-start'}`}>
-                    <span className="text-blue-400 font-mono text-sm mb-1">{item.year || "202X - 202X"}</span>
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">{item.title || item.name}</h3>
-                    {item.institution && <h4 className="text-gray-400 text-sm mb-3">{item.institution}</h4>}
-                    <p className="text-gray-400 text-sm leading-relaxed max-h-0 opacity-0 group-hover:max-h-40 group-hover:opacity-100 transition-all duration-500 overflow-hidden">
-                        {item.description}
-                    </p>
+                        <p className="text-gray-500 text-sm mt-2 leading-relaxed">
+                            {item.description}
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
+
+            {/* Timeline Center Point - Hidden on Mobile */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 hidden md:flex items-center justify-center">
+                <div className="w-4 h-4 rounded-full bg-blue-600 border-4 border-gray-900 z-10 shadow-[0_0_10px_rgba(37,99,235,0.5)]"></div>
+            </div>
+
+            {/* Empty Space for the other side - Hidden on Mobile */}
+            <div className="hidden md:block w-full md:w-5/12"></div>
+        </motion.div>
     );
 };
 
 export default function Journey() {
+    const [education, setEducation] = useState([]);
     const [experience, setExperience] = useState([]);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Mock data used since backend route /api/experience does not exist
-        setExperience(ExperienceData);
-        setLoading(false);
+        fetch('http://localhost:5000/api/journey')
+            .then(res => res.json())
+            .then(data => {
+                if (Array.isArray(data)) {
+                    // Sort by order if available
+                    const sorted = data.sort((a, b) => (a.order || 0) - (b.order || 0));
+                    const edu = sorted.filter(item => item.type === 'education');
+                    const exp = sorted.filter(item => item.type === 'experience');
+                    setEducation(edu);
+                    setExperience(exp);
+                }
+            })
+            .catch(err => console.error('Error fetching journey data:', err));
     }, []);
 
     return (
-        <div className="min-h-screen w-full py-20 px-4 md:px-10 flex flex-col items-center overflow-x-hidden">
-            <h1 className='text-5xl font-bold mb-20 text-center text-white'>
-                <span className="text-blue-500">My</span> Journey
-            </h1>
+        <div className="min-h-screen py-20 px-4 relative overflow-hidden flex flex-col items-center justify-center" id="journey">
 
-            <Reveal width="100%">
-                <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-0 relative ">
+            {/* Background Decorations */}
+            <div className="absolute top-20 left-10 w-64 h-64 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+            <div className="absolute bottom-20 right-10 w-64 h-64 bg-purple-600/10 rounded-full blur-[100px] pointer-events-none"></div>
 
-                    <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gray-800 -translate-x-1/2"></div>
+            <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-center mb-16 relative z-10"
+            >
+                <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                    My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Journey</span>
+                </h2>
+                <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+            </motion.div>
 
+            <div className="w-full max-w-6xl relative">
+                {/* Central Line */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500/0 via-blue-500/50 to-purple-500/0 hidden md:block"></div>
 
-                    <div className="flex flex-col items-end">
-                        <h2 className="text-3xl font-bold text-white mb-12 pr-8 border-r-4 border-blue-500">Education</h2>
-                        <div className="w-full flex flex-col items-end">
-                            {EducationData.map((edu) => (
-                                <JourneyCard key={edu.id} item={edu} type="education" />
-                            ))}
-                        </div>
-                    </div>
+                {/* Education Section */}
+                <div className="relative mb-12">
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        className="flex justify-center md:justify-start md:ml-[calc(50%-80px)] md:mb-8 mb-6"
+                    >
+                        <h3 className="text-2xl font-bold text-white bg-gray-900/80 px-4 py-2 rounded-lg border border-white/10 backdrop-blur-sm inline-flex items-center gap-2">
+                            <Icon icon="mdi:school" className="text-purple-400" /> Education
+                        </h3>
+                    </motion.div>
 
-                    <div className="flex flex-col items-start">
-                        <h2 className="text-3xl font-bold text-white mb-12 pl-8 border-l-4 border-blue-500">Experience</h2>
-                        <div className="w-full flex flex-col items-start">
-                            {experience.map((exp) => (
-                                <JourneyCard key={exp._id || exp.id} item={exp} type="experience" />
-                            ))}
-                        </div>
+                    <div className="flex flex-col gap-4">
+                        {education.map((edu, index) => (
+                            <TimelineItem key={edu.id || index} item={edu} type="education" index={index} />
+                        ))}
+                        {education.length === 0 && <p className="text-gray-500 text-center italic">Loading Education data...</p>}
                     </div>
                 </div>
-            </Reveal>
+
+                {/* Experience Section */}
+                <div className="relative">
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        className="flex justify-center md:justify-end md:mr-[calc(50%-80px)] md:mb-8 mb-6"
+                    >
+                        <h3 className="text-2xl font-bold text-white bg-gray-900/80 px-4 py-2 rounded-lg border border-white/10 backdrop-blur-sm inline-flex items-center gap-2">
+                            <Icon icon="mdi:briefcase" className="text-blue-400" /> Experience
+                        </h3>
+                    </motion.div>
+
+                    <div className="flex flex-col gap-4">
+                        {experience.map((exp, index) => (
+                            <TimelineItem key={exp._id || exp.id || index} item={exp} type="experience" index={index} />
+                        ))}
+                        {experience.length === 0 && <p className="text-gray-500 text-center italic">Loading Experience data...</p>}
+                    </div>
+                </div>
+
+            </div>
         </div>
-    )
+    );
 }

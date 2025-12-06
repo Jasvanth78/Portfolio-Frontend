@@ -87,21 +87,20 @@ export default function Skill() {
     }, []);
 
     const SkillCard = ({ item }) => (
-        <div className="group relative flex flex-col items-center justify-center w-20 h-20 transition-all duration-300">
+        <div className="group relative flex flex-col items-center justify-center w-28 h-32 p-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl transition-all duration-300 hover:border-cyan-500/50 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:-translate-y-2 cursor-pointer overflow-hidden">
 
-            <div className="absolute inset-0 bg-cyan-500/10 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-0 group-hover:scale-100"></div>
+            {/* Inner Glow Effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-
-            <div className="relative z-10 transition-all duration-300 transform group-hover:scale-110 group-hover:-translate-y-2 opacity-80 group-hover:opacity-100">
+            <div className="relative z-10 mb-3 opacity-90 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110">
                 {item.node ? (
-                    <div className="text-4xl text-gray-300 group-hover:text-white transition-colors duration-300 drop-shadow-lg">{item.node}</div>
+                    <div className="text-4xl text-gray-300 group-hover:text-cyan-300 transition-colors duration-300 drop-shadow-md">{item.node}</div>
                 ) : (
-                    <img src={item.src} alt={item.alt} className="w-10 h-10 object-contain drop-shadow-lg" />
+                    <img src={item.src} alt={item.alt} className="w-10 h-10 object-contain drop-shadow-md" />
                 )}
             </div>
 
-
-            <span className="absolute bottom-2 opacity-0 group-hover:opacity-100 transition-all duration-300 text-[10px] font-bold text-cyan-300 tracking-widest uppercase translate-y-2 group-hover:translate-y-0 text-shadow-glow">
+            <span className="relative z-10 text-[11px] font-bold text-gray-400 group-hover:text-white tracking-widest uppercase text-center transition-colors duration-300">
                 {item.title}
             </span>
         </div>
@@ -114,20 +113,20 @@ export default function Skill() {
 
         return (
             <div className="mb-8">
-                <h3 className="text-xl font-bold text-center mb-2">
+                <h3 className="text-xl font-bold text-center mb-6">
                     <span className="text-blue-500 text-2xl">{firstPart}</span>{' '}
                     <span className=" text-white text-2xl">{lastPart}</span>
                 </h3>
                 <div className="relative w-full max-w-7xl mx-auto">
-                    <div className="relative w-full flex items-center justify-center" style={{ height: '100px', overflow: 'hidden' }}>
+                    <div className="relative w-full flex items-center justify-center" style={{ height: '160px', overflow: 'hidden' }}>
                         <div className="w-full mask-linear-fade">
                             <LogoLoop
                                 logos={skills}
-                                speed={80}
+                                speed={35}
                                 direction={direction}
-                                logoHeight={80} // Match card height
-                                gap={10}
-                                hoverSpeed={20}
+                                logoHeight={140}
+                                gap={24}
+                                hoverSpeed={10}
                                 scaleOnHover={false}
                                 fadeOut={true}
                                 fadeOutColor="#000000"
@@ -165,7 +164,7 @@ export default function Skill() {
                                     <span className="text-blue-500 text-2xl">Frontend</span>{' '}
                                     <span className=" text-white text-2xl">Development</span>
                                 </h3>
-                                <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 place-items-center">
+                                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 place-items-center">
                                     {frontendSkills.map((skill, index) => (
                                         <SkillCard key={`front-${index}`} item={skill} />
                                     ))}
@@ -178,7 +177,7 @@ export default function Skill() {
                                     <span className="text-blue-500 text-2xl">Backend</span>{' '}
                                     <span className=" text-white text-2xl">Development</span>
                                 </h3>
-                                <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 place-items-center place-content-center">
+                                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 place-items-center place-content-center">
                                     {backendSkills.map((skill, index) => (
                                         <SkillCard key={`back-${index}`} item={skill} />
                                     ))}
@@ -191,7 +190,7 @@ export default function Skill() {
                                     <span className="text-blue-500 text-2xl">Tools</span>{' '}
                                     <span className=" text-white text-2xl">& Others</span>
                                 </h3>
-                                <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 place-items-center">
+                                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 place-items-center">
                                     {toolsSkills.map((skill, index) => (
                                         <SkillCard key={`tool-${index}`} item={skill} />
                                     ))}

@@ -72,42 +72,67 @@ export default function Projects() {
                     </p>
                 </motion.div>
 
-                <motion.div
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                >
+                <div className="space-y-24">
                     {Array.isArray(projects) && projects.map((project, index) => (
                         <motion.div
                             key={project._id || index}
-                            variants={itemVariants}
-                            className="group relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden hover:border-blue-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/20 flex flex-col h-full"
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.6 }}
+                            className="flex flex-col md:flex-row gap-12 items-center"
                         >
-                            {/* Image Container */}
-                            <div className="relative h-56 overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent opacity-60 z-10" />
-                                <img
-                                    src={project.thumbnail || 'https://via.placeholder.com/400x250'}
-                                    alt={project.title || 'Project'}
-                                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                                />
-                                <div className="absolute top-4 right-4 z-20 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
-                                    <span className="text-blue-400 font-bold text-sm">#{index + 1}</span>
+                            {/* Image Section */}
+                            <div className="w-full md:w-1/2 relative group">
+                                <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-500" />
+                                <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-gray-900 shadow-2xl">
+                                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+                                    <img
+                                        src={project.thumbnail || 'https://via.placeholder.com/600x400'}
+                                        alt={project.title}
+                                        className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                    />
+
+                                    {/* Overlay Buttons */}
+                                    <div className="absolute bottom-0 left-0 right-0 p-6 flex justify-center gap-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-20">
+                                        {project.githubUrl && (
+                                            <a
+                                                href={project.githubUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 rounded-full text-white transition-all hover:scale-110"
+                                                title="View Code"
+                                            >
+                                                <Icon icon="mdi:github" className="text-2xl" />
+                                            </a>
+                                        )}
+                                        {project.liveUrl && (
+                                            <a
+                                                href={project.liveUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="p-3 bg-blue-600/80 hover:bg-blue-600 backdrop-blur-md border border-blue-400/30 rounded-full text-white transition-all hover:scale-110"
+                                                title="Live Demo"
+                                            >
+                                                <Icon icon="mdi:external-link" className="text-2xl" />
+                                            </a>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
 
-                            {/* Content */}
-                            <div className="p-6 flex flex-col flex-grow">
-                                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
+                            {/* Content Section */}
+                            <div className="w-full md:w-1/2 text-center md:text-left">
+                                <h3 className="text-3xl font-bold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
                                     {project.title || 'Untitled Project'}
                                 </h3>
 
-                                <p className="text-gray-400 text-sm mb-6 line-clamp-3 flex-grow">
+                                <p className="text-gray-400 text-lg mb-6 leading-relaxed">
                                     {project.description || 'No description available.'}
                                 </p>
 
                                 {/* Tags */}
-                                <div className="flex flex-wrap gap-2 mb-6">
+                                <div className="flex flex-wrap gap-2 mb-8 justify-center md:justify-start">
                                     {(() => {
                                         if (!project.tags) return null;
                                         const tagsArray = Array.isArray(project.tags)
@@ -116,58 +141,33 @@ export default function Projects() {
                                                 ? project.tags.split(',')
                                                 : [];
 
-                                        return tagsArray.slice(0, 3).map((tag, i) => (
+                                        return tagsArray.map((tag, i) => (
                                             <span
                                                 key={i}
-                                                className="text-xs px-2 py-1 rounded-md bg-blue-500/10 text-blue-300 border border-blue-500/20"
+                                                className="px-3 py-1 text-sm bg-blue-500/10 text-blue-300 border border-blue-500/20 rounded-full"
                                             >
                                                 {typeof tag === 'string' ? tag.trim() : tag}
                                             </span>
                                         ));
                                     })()}
-                                    {project.tags && (Array.isArray(project.tags) ? project.tags.length : project.tags.split(',').length) > 3 && (
-                                        <span className="text-xs px-2 py-1 rounded-md bg-white/5 text-gray-400 border border-white/10">
-                                            +{(Array.isArray(project.tags) ? project.tags.length : project.tags.split(',').length) - 3}
-                                        </span>
-                                    )}
                                 </div>
 
-                                {/* Actions */}
-                                <div className="flex items-center justify-between pt-4 border-t border-white/10 mt-auto">
-                                    <div className="flex gap-3">
-                                        {project.githubUrl && (
-                                            <a
-                                                href={project.githubUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white transition-all border border-white/5 hover:border-white/20"
-                                                title="View Code"
-                                            >
-                                                <Icon icon="mdi:github" className="text-xl" />
-                                            </a>
-                                        )}
-                                        {project.liveUrl && (
-                                            <a
-                                                href={project.liveUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="p-2 rounded-full bg-blue-600/20 hover:bg-blue-600/30 text-blue-400 hover:text-blue-300 transition-all border border-blue-500/20 hover:border-blue-500/40"
-                                                title="Live Demo"
-                                            >
-                                                <Icon icon="mdi:external-link" className="text-xl" />
-                                            </a>
-                                        )}
+                                {/* Stats/Info */}
+                                <div className="flex items-center gap-6 justify-center md:justify-start text-gray-500 text-sm">
+                                    <div className="flex items-center gap-2">
+                                        <Icon icon="fluent:people-team-20-regular" className="text-lg text-blue-400" />
+                                        <span>{project.team || 'Solo Project'}</span>
                                     </div>
-
-                                    <div className="flex items-center gap-2 text-gray-500 text-xs">
-                                        <Icon icon="fluent:people-team-20-regular" className="text-base" />
-                                        <span>{project.team || 'Solo'}</span>
+                                    <div className="w-1 h-1 bg-gray-700 rounded-full" />
+                                    <div className="flex items-center gap-2">
+                                        <Icon icon="mdi:code-tags" className="text-lg text-purple-400" />
+                                        <span>Full Stack</span>
                                     </div>
                                 </div>
                             </div>
                         </motion.div>
                     ))}
-                </motion.div>
+                </div>
             </div>
         </div>
     );
