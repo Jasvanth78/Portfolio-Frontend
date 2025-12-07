@@ -87,16 +87,16 @@ export default function Journey() {
                 className="text-center mb-16 relative z-10"
             >
                 <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                    My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Journey</span>
+                    My <span className="text-blue-500">Journey</span>
                 </h2>
-                <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+            
             </motion.div>
 
             <div className="w-full max-w-6xl relative">
-                {/* Central Line */}
+            
                 <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500/0 via-blue-500/50 to-purple-500/0 hidden md:block"></div>
 
-                {/* Education Section */}
+            
                 <div className="relative mb-12">
                     <motion.div
                         initial={{ opacity: 0 }}
@@ -116,7 +116,7 @@ export default function Journey() {
                     </div>
                 </div>
 
-                {/* Experience Section */}
+                
                 <div className="relative">
                     <motion.div
                         initial={{ opacity: 0 }}

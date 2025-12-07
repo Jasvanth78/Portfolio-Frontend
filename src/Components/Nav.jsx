@@ -77,7 +77,7 @@ export default function Nav() {
   }, []);
 
   return (
-    <div className="fixed bottom-4 left-0 w-full z-50 flex justify-center pointer-events-none sm:w-full sm:mt-1">
+    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-auto">
       <div className="pointer-events-auto">
         <Dock
           items={items}

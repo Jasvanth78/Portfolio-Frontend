@@ -36,7 +36,7 @@ export default function Home() {
 
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
                 <Reveal>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full py-20">
+                    <div className="flex flex-col md:flex-row justify-between items-center w-full py-20 gap-20 md:gap-70">
 
                         <div className="flex flex-col justify-center space-y-6 text-center md:text-left">
                             <h1 className="text-white text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
@@ -82,7 +82,7 @@ export default function Home() {
 
                             <div className="flex justify-center md:justify-start gap-4 mt-4">
                                 <button className="bg-blue-500 hover:bg-blue-900 text-white py-2 px-6 rounded-md transition duration-300 flex items-center gap-2 cursor-pointer shadow-lg hover:shadow-blue-500/50 sm:py-3 ">
-                                    <Icon icon="bitcoin-icons:share-filled" className='text-xl' /> Get In Touch
+                                    <Icon icon="bitcoin-icons:share-filled" className='text-xl' href='#contact' /> Get In Touch
                                 </button>
 
                                 <button className="bg-white hover:bg-gray-200 text-black py-2 px-6 rounded-md transition duration-300 cursor-pointer flex items-center gap-2 shadow-lg hover:shadow-white/50">
@@ -96,11 +96,14 @@ export default function Home() {
 
                         <div className="flex justify-center md:justify-end">
                             <div className="relative group">
-                                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-                                <img
+                                <div className=" bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl blur-xl opacity-45 group-hover:opacity-70 transition duration-1000 group-hover:duration-200"></div>
+                                <motion.img
                                     src={img}
                                     alt="Jasvanth"
-                                    className="relative w-80 h-80 md:w-96 md:h-96 object-cover object-center rounded-2xl shadow-2xl"
+                                    initial={{ opacity: 0, scale: 0.5 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ duration: 0.8 }}
+                                    className="relative w-80 h-80 md:w-96 md:h-96 object-cover object-top rounded-2xl shadow-sm hover:scale-105 transition duration-300"
                                 />
                             </div>
                         </div>
