@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import API_BASE_URL from '../config';
 import { motion } from 'motion/react';
 import { Icon } from '@iconify/react';
 
@@ -58,7 +59,7 @@ export default function Journey() {
     const [experience, setExperience] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/journey')
+        fetch(`${API_BASE_URL}/api/journey`)
             .then(res => res.json())
             .then(data => {
                 if (Array.isArray(data)) {
@@ -89,14 +90,14 @@ export default function Journey() {
                 <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
                     My <span className="text-blue-500">Journey</span>
                 </h2>
-            
+
             </motion.div>
 
             <div className="w-full max-w-6xl relative">
-            
+
                 <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500/0 via-blue-500/50 to-purple-500/0 hidden md:block"></div>
 
-            
+
                 <div className="relative mb-12">
                     <motion.div
                         initial={{ opacity: 0 }}
@@ -116,7 +117,7 @@ export default function Journey() {
                     </div>
                 </div>
 
-                
+
                 <div className="relative">
                     <motion.div
                         initial={{ opacity: 0 }}

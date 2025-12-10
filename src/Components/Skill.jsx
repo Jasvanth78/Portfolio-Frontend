@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import API_BASE_URL from '../config';
 import { Reveal } from './Reveal';
 import { Icon } from '@iconify/react';
 import LogoLoop from '../T.Components/Skillsloop';
@@ -63,7 +64,7 @@ export default function Skill() {
     }, []);
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/skills')
+        fetch(`${API_BASE_URL}/api/skills`)
             .then(res => res.json())
             .then(data => {
                 const formatted = data.map(skill => ({

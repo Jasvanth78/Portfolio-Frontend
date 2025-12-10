@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import API_BASE_URL from '../config';
 import { Icon } from '@iconify/react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -7,7 +8,7 @@ export default function Projects() {
 
     useEffect(() => {
         console.log('Fetching projects...');
-        fetch('http://localhost:5000/api/projects')
+        fetch(`${API_BASE_URL}/api/projects`)
             .then(res => {
                 console.log('Response status:', res.status);
                 return res.json();
@@ -82,7 +83,7 @@ export default function Projects() {
                             transition={{ duration: 0.6 }}
                             className="flex flex-col md:flex-row gap-12 items-center"
                         >
-                            
+
                             <div className="w-full md:w-1/2 relative group">
                                 <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-500" />
                                 <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-gray-900 shadow-2xl">
@@ -93,7 +94,7 @@ export default function Projects() {
                                         className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
                                     />
 
-                        
+
                                     <div className="absolute bottom-0 left-0 right-0 p-6 flex justify-center gap-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-20">
                                         {project.githubUrl && (
                                             <a
@@ -121,7 +122,7 @@ export default function Projects() {
                                 </div>
                             </div>
 
-                    
+
                             <div className="w-full md:w-1/2 text-center md:text-left">
                                 <h3 className="text-3xl font-bold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
                                     {project.title || 'Untitled Project'}
@@ -131,7 +132,7 @@ export default function Projects() {
                                     {project.description || 'No description available.'}
                                 </p>
 
-                            
+
                                 <div className="flex flex-wrap gap-2 mb-8 justify-center md:justify-start">
                                     {(() => {
                                         if (!project.tags) return null;
@@ -152,7 +153,7 @@ export default function Projects() {
                                     })()}
                                 </div>
 
-                                
+
                                 <div className="flex items-center gap-6 justify-center md:justify-start text-gray-500 text-sm">
                                     <div className="flex items-center gap-2">
                                         <Icon icon="fluent:people-team-20-regular" className="text-lg text-blue-400" />
