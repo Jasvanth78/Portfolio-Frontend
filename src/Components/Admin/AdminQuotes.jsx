@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import API_BASE_URL from '../../config';
 
 export default function AdminQuotes() {
     const [quotes, setQuotes] = useState([]);
     const [formData, setFormData] = useState({ text: '', author: '', image: null });
 
     const fetchQuotes = () => {
-        fetch('http://localhost:5000/api/quotes')
+        fetch(`${API_BASE_URL}/api/quotes`)
             .then(res => res.json())
             .then(data => setQuotes(data))
             .catch(err => console.error(err));
@@ -25,7 +26,7 @@ export default function AdminQuotes() {
         try {
             // Assuming token is stored in localStorage, adjust if needed
             const token = localStorage.getItem('token');
-            const res = await fetch('http://localhost:5000/api/quotes', {
+            const res = await fetch(`${API_BASE_URL}/api/quotes`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -48,7 +49,7 @@ export default function AdminQuotes() {
         if (!window.confirm('Are you sure?')) return;
         try {
             const token = localStorage.getItem('token');
-            const res = await fetch(`http://localhost:5000/api/quotes/${id}`, {
+            const res = await fetch(`${API_BASE_URL}/api/quotes/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -102,7 +103,7 @@ export default function AdminQuotes() {
                     <div key={quote.id} className="flex items-center justify-between bg-neutral-900 p-4 rounded border border-neutral-800">
                         <div className="flex items-center gap-4">
                             {quote.image && (
-                                <img src={`http://localhost:5000${quote.image}`} alt={quote.author} className="w-12 h-12 rounded-full object-cover" />
+                                <img src={`${API_BASE_URL}${quote.image}`} alt={quote.author} className="w-12 h-12 rounded-full object-cover" />
                             )}
                             <div>
                                 <p className="italic">"{quote.text}"</p>

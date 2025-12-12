@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import API_BASE_URL from '../config';
 
 export default function Quotes(props) {
     const [quotes, setQuotes] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/quotes')
+        fetch(`${API_BASE_URL}/api/quotes`)
             .then(res => res.json())
             .then(data => setQuotes(data))
             .catch(err => console.error('Error fetching quotes:', err));
@@ -37,7 +38,7 @@ export default function Quotes(props) {
                     <div className="flex items-center gap-3">
                         <img
                             src={quotes[currentIndex].image
-                                ? `http://localhost:5000${quotes[currentIndex].image}`
+                                ? `${API_BASE_URL}${quotes[currentIndex].image}`
                                 : `https://ui-avatars.com/api/?name=${encodeURIComponent(quotes[currentIndex].author)}&background=random`}
                             alt={quotes[currentIndex].author}
                             className="w-8 h-8 rounded-full object-cover border-2 border-blue-500 shrink-0 mt-8"

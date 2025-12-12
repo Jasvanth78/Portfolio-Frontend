@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
+import API_BASE_URL from '../config';
 
 export default function ContactPage() {
     const [formData, setFormData] = useState({
@@ -19,7 +20,7 @@ export default function ContactPage() {
         e.preventDefault();
         setStatus('loading');
         try {
-            const response = await fetch('http://localhost:5000/api/contacts', {
+            const response = await fetch(`${API_BASE_URL}/api/contacts`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

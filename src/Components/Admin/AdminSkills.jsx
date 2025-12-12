@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import API_BASE_URL from '../../config';
 
 export default function AdminSkills() {
     const [skills, setSkills] = useState([]);
     const [formData, setFormData] = useState({ name: '', image: '', category: 'frontend' });
 
     const fetchSkills = () => {
-        fetch('http://localhost:5000/api/skills')
+        fetch(`${API_BASE_URL}/api/skills`)
             .then(res => res.json())
             .then(data => setSkills(data))
             .catch(err => console.error(err));
@@ -19,7 +20,7 @@ export default function AdminSkills() {
         e.preventDefault();
         try {
             const token = localStorage.getItem('token');
-            const res = await fetch('http://localhost:5000/api/skills', {
+            const res = await fetch(`${API_BASE_URL}/api/skills`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -43,7 +44,7 @@ export default function AdminSkills() {
         if (!window.confirm('Are you sure?')) return;
         try {
             const token = localStorage.getItem('token');
-            const res = await fetch(`http://localhost:5000/api/skills/${id}`, {
+            const res = await fetch(`${API_BASE_URL}/api/skills/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
