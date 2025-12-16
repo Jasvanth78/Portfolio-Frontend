@@ -6,8 +6,18 @@
     <link rel="icon" type="image/svg+xml" href="./assets/jasvanth1-Blny6jyd.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>jasvanth</title>
-    <script type="module" crossorigin src="./assets/index-BHLEVx2r.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DRE4HzgR.css">
+    
+    <script>
+      (function() {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="./assets/index-BKv9cil9.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DQKvAVX7.css">
   </head>
   <body>
     <div id="root"></div>
