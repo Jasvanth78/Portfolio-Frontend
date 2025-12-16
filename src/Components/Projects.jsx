@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import API_BASE_URL from '../config';
 import { Icon } from '@iconify/react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
 
-export default function Projects() {
+export default function Projects({ isPreview = false }) {
     const [projects, setProjects] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         console.log('Fetching projects...');
@@ -50,9 +52,11 @@ export default function Projects() {
         }
     };
 
+    const displayedProjects = isPreview ? projects.slice(0, 1) : projects;
+
     return (
         <div className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden" id="projects">
-            {/* Background Elements */}
+           
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
                 <div className="absolute top-[10%] left-[5%] w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[100px]" />
                 <div className="absolute bottom-[10%] right-[5%] w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[100px]" />
@@ -74,7 +78,7 @@ export default function Projects() {
                 </motion.div>
 
                 <div className="space-y-24">
-                    {Array.isArray(projects) && projects.map((project, index) => (
+                    {Array.isArray(displayedProjects) && displayedProjects.map((project, index) => (
                         <motion.div
                             key={project._id || index}
                             initial={{ opacity: 0, y: 50 }}
@@ -169,6 +173,18 @@ export default function Projects() {
                         </motion.div>
                     ))}
                 </div>
+
+                {isPreview && Array.isArray(projects) && projects.length > 1 && (
+                    <div className="flex justify-center mt-20">
+                        <button
+                            onClick={() => navigate('/projects')}
+                            className="bg-blue-600 hover:bg-blue-700 text-white py-3 px-8 rounded-xl transition duration-300 flex items-center gap-2 cursor-pointer shadow-lg hover:shadow-blue-500/50"
+                        >
+                            View All Projects
+                            <Icon icon="mdi:arrow-right" className="text-xl" />
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );

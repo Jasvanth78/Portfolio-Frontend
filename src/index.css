@@ -1,5 +1,5 @@
 :root {
-    --bg-dark: linear-gradient(135deg, #0f0f1e 0%, #1a1a3e 30%, #2d1b4e 60%, #1a0033 100%);
+    --bg-dark: #000000;
     --bg-light: #f3f4f6;
     --text-dark: #e5e7eb;
     --text-light: #1f2937;
