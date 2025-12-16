@@ -11,7 +11,7 @@ export default function About() {
           <h1 className="text-4xl md:text-5xl font-bold text-white tracking-wide">
             About <span className="text-blue-400">Me</span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+          <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
             I'm a fresher learning full-stack development, turning curiosity into code and ideas into impact.
             Every bug I fix, every project I build, shapes my future.
             <span className="block mt-4 font-semibold text-white">
@@ -20,11 +20,11 @@ export default function About() {
           </p>
         </div>
 
-        
-        
+
+
         <div className="pt-4">
-                            <Quotes />
-                        </div>
+          <Quotes />
+        </div>
       </div>
     </div>
   );

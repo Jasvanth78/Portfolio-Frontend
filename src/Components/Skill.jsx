@@ -13,8 +13,6 @@ import {
     SiVercel
 } from 'react-icons/si';
 
-
-
 const techLogos = [
     { node: <SiReact />, title: "React", href: "https://react.dev" },
     { node: <SiJavascript />, title: "Javascript", href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
@@ -88,20 +86,20 @@ export default function Skill() {
     }, []);
 
     const SkillCard = ({ item }) => (
-        <div className="group relative flex flex-col items-center justify-center w-28 h-32 p-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl transition-all duration-300 hover:border-cyan-500/50 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:-translate-y-2 cursor-pointer overflow-hidden">
+        <div className="group relative flex flex-col items-center justify-center w-28 h-32 p-4 bg-white/80 dark:bg-neutral-900/20 backdrop-blur-sm border border-gray-200 dark:border-neutral-800/30 rounded-xl transition-all duration-300 hover:border-blue-600/50 hover:bg-neutral-100 dark:hover:bg-neutral-800/30 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:-translate-y-2 cursor-pointer overflow-hidden">
 
             {/* Inner Glow Effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
             <div className="relative z-10 mb-3 opacity-90 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110">
                 {item.node ? (
-                    <div className="text-4xl text-gray-300 group-hover:text-cyan-300 transition-colors duration-300 drop-shadow-md">{item.node}</div>
+                    <div className="text-4xl text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 drop-shadow-md">{item.node}</div>
                 ) : (
                     <img src={item.src} alt={item.alt} className="w-10 h-10 object-contain drop-shadow-md" />
                 )}
             </div>
 
-            <span className="relative z-10 text-[11px] font-bold text-gray-400 group-hover:text-white tracking-widest uppercase text-center transition-colors duration-300">
+            <span className="relative z-10 text-[11px] font-bold text-gray-600 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200 tracking-widest uppercase text-center transition-colors duration-300">
                 {item.title}
             </span>
         </div>
@@ -115,8 +113,8 @@ export default function Skill() {
         return (
             <div className="mb-8">
                 <h3 className="text-xl font-bold text-center mb-6">
-                    <span className="text-blue-500 text-2xl">{firstPart}</span>{' '}
-                    <span className=" text-white text-2xl">{lastPart}</span>
+                    <span className="text-blue-400 text-2xl">{firstPart}</span>{' '}
+                    <span className="text-gray-900 dark:text-white text-2xl">{lastPart}</span>
                 </h3>
                 <div className="relative w-full max-w-7xl mx-auto">
                     <div className="relative w-full flex items-center justify-center" style={{ height: '160px', overflow: 'hidden' }}>
@@ -130,7 +128,6 @@ export default function Skill() {
                                 hoverSpeed={10}
                                 scaleOnHover={false}
                                 fadeOut={true}
-                                fadeOutColor="#000000"
                                 ariaLabel={`${title} logos`}
                                 renderItem={(item) => <SkillCard item={item} />}
                             />
@@ -144,7 +141,7 @@ export default function Skill() {
     const allSkills = [...frontendSkills, ...backendSkills, ...toolsSkills];
 
     return (
-        <div className="text-white w-full py-20 pb-40 relative group/section">
+        <div className="text-gray-900 dark:text-white w-full py-20 pb-40 relative group/section">
             <div className="relative w-full max-w-6xl mx-auto min-h-[600px] transition-all duration-500">
                 <Reveal width="100%">
                     <div className="flex justify-center mb-16">
@@ -162,8 +159,8 @@ export default function Skill() {
 
                             <div className="flex flex-col items-center">
                                 <h3 className="text-xl font-bold text-center mb-8">
-                                    <span className="text-blue-500 text-2xl">Frontend</span>{' '}
-                                    <span className=" text-white text-2xl">Development</span>
+                                    <span className="text-blue-400 text-2xl">Frontend</span>{' '}
+                                    <span className="text-white text-2xl">Development</span>
                                 </h3>
                                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 place-items-center">
                                     {frontendSkills.map((skill, index) => (
@@ -175,8 +172,8 @@ export default function Skill() {
 
                             <div className="flex flex-col items-center">
                                 <h3 className="text-xl font-bold text-center mb-8">
-                                    <span className="text-blue-500 text-2xl">Backend</span>{' '}
-                                    <span className=" text-white text-2xl">Development</span>
+                                    <span className="text-blue-400 text-2xl">Backend</span>{' '}
+                                    <span className="text-white text-2xl">Development</span>
                                 </h3>
                                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 place-items-center place-content-center">
                                     {backendSkills.map((skill, index) => (
@@ -188,8 +185,8 @@ export default function Skill() {
 
                             <div className="flex flex-col items-center">
                                 <h3 className="text-xl font-bold text-center mb-8">
-                                    <span className="text-blue-500 text-2xl">Tools</span>{' '}
-                                    <span className=" text-white text-2xl">& Others</span>
+                                    <span className="text-blue-400 text-2xl">Tools</span>{' '}
+                                    <span className="text-white text-2xl">& Others</span>
                                 </h3>
                                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 place-items-center">
                                     {toolsSkills.map((skill, index) => (
@@ -209,8 +206,8 @@ export default function Skill() {
             >
                 <div className="relative flex items-center justify-center">
                     <div className="absolute  rounded-full blur opacity-40 group-hover/btn:opacity-70 transition-opacity duration-300 hover:opacity-70"></div>
-                    <div className="relative bg-black/40 backdrop-blur-md border border-cyan-500/30 rounded-full px-3 py-3 flex items-center gap-3 transition-all duration-300 group-hover/btn:border-cyan-500/60 group-hover/btn:bg-black/60">
-                        <span className="text-2xl text-cyan-400">
+                    <div className="relative bg-black/40 backdrop-blur-md border border-blue-500/30 rounded-full px-3 py-3 flex items-center gap-3 transition-all duration-300 group-hover/btn:border-blue-500/60 group-hover/btn:bg-black/60">
+                        <span className="text-2xl text-blue-400">
                             {isExpanded ? <Icon icon="ic:round-arrow-drop-up" className='text-1xl' /> : <Icon icon="ic:round-arrow-drop-down" className='text-1xl' />}
                         </span>
 

@@ -42,7 +42,7 @@ export default function ContactPage() {
     };
 
     return (
-        <div className="min-h-screen bg-black text-white relative overflow-hidden flex flex-col">
+        <div className="min-h-screen bg-black text-white relative overflow-hidden flex flex-col transition-colors duration-300">
             {/* Background Elements */}
             <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
                 <div className="absolute top-[10%] left-[10%] w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px]" />
@@ -51,7 +51,7 @@ export default function ContactPage() {
 
             {/* Navigation */}
             <nav className="relative z-20 p-6">
-                <Link to="/" className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
+                <Link to="/" className="inline-flex items-center gap-2 text-gray-400 hover:text-blue-400 transition-colors">
                     <Icon icon="mdi:arrow-left" className="text-xl" />
                     <span>Back to Home</span>
                 </Link>
@@ -65,8 +65,8 @@ export default function ContactPage() {
                     className="max-w-2xl w-full"
                 >
                     <div className="text-center mb-12">
-                        <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                            <span className="text-blue-600">Contact</span> Me
+                        <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+                            <span className="text-blue-400">Contact</span> Me
                         </h1>
                         <p className="text-gray-400 text-lg leading-relaxed">
                             I'm currently available for freelance work or full-time positions.
@@ -74,7 +74,7 @@ export default function ContactPage() {
                         </p>
                     </div>
 
-                    <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 shadow-2xl">
+                    <div className="bg-gray-900/30 backdrop-blur-xl border border-gray-700/30 rounded-2xl p-8 md:p-12 shadow-2xl">
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
@@ -85,7 +85,7 @@ export default function ContactPage() {
                                         value={formData.name}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                                        className="w-full px-4 py-3 bg-gray-900/40 border border-gray-700/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
                                         placeholder="John Doe"
                                     />
                                 </div>
@@ -97,7 +97,7 @@ export default function ContactPage() {
                                         value={formData.email}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                                        className="w-full px-4 py-3 bg-gray-900/40 border border-gray-700/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
                                         placeholder="john@example.com"
                                     />
                                 </div>
@@ -111,7 +111,7 @@ export default function ContactPage() {
                                     value={formData.message}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all resize-none"
+                                    className="w-full px-4 py-3 bg-gray-900/40 border border-gray-700/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all resize-none"
                                     placeholder="Tell me about your project..."
                                 />
                             </div>

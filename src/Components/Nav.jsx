@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Dock from '../T.Components/Navbar.jsx';
-import { VscHome, VscAccount, VscTools, VscBriefcase, VscRepo, VscMail } from 'react-icons/vsc';
+import { VscHome, VscAccount, VscTools, VscBriefcase, VscRepo, VscMail, VscColorMode } from 'react-icons/vsc';
 import { GiJourney } from "react-icons/gi";
+import { useTheme } from '../context/ThemeContext';
+
 export default function Nav() {
   const [activeSection, setActiveSection] = useState('home');
+  const { theme, toggleTheme } = useTheme();
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -39,9 +42,15 @@ export default function Nav() {
     { icon: <GiJourney size={18} color="white" />, label: 'Journey', id: 'journey' },
     { icon: <VscRepo size={18} color="white" />, label: 'Projects', id: 'projects' },
     { icon: <VscMail size={18} color="white" />, label: 'Contact', id: 'contact' },
+    {
+      icon: <VscColorMode size={18} color="white" />,
+      label: theme === 'light' ? 'Dark Mode' : 'Light Mode',
+      id: 'theme',
+      customOnClick: toggleTheme
+    },
   ].map(item => ({
     ...item,
-    onClick: () => scrollToSection(item.id),
+    onClick: item.customOnClick || (() => scrollToSection(item.id)),
     className: activeSection === item.id ? '!border-blue-500 !shadow-[0_0_10px_rgba(59,130,246,0.5)]' : ''
   }));
 

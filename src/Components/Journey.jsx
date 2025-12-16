@@ -16,27 +16,27 @@ const TimelineItem = ({ item, type, index }) => {
         >
             {/* Content Card */}
             <div className={`w-full md:w-5/12 ${isEducation ? 'text-center md:text-right' : 'text-center md:text-left'}`}>
-                <div className="p-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl hover:border-blue-500/50 hover:bg-white/10 transition-all duration-300 shadow-xl group">
+                <div className="p-6 bg-white/80 dark:bg-neutral-900/10 backdrop-blur-md border border-gray-200 dark:border-neutral-800/30 rounded-2xl hover:border-blue-600/50 hover:bg-neutral-100 dark:hover:bg-neutral-800/30 transition-all duration-300 shadow-xl group">
                     <div className={`flex flex-col gap-2 ${isEducation ? 'items-center md:items-end' : 'items-center md:items-start'}`}>
                         <div className="flex items-center gap-2 mb-2">
-                            {!isEducation && item.icon && <Icon icon={item.icon} className="text-blue-500 text-xl hidden md:block" />}
-                            <span className="text-blue-400 font-mono text-sm border border-blue-500/20 px-2 py-1 rounded bg-blue-500/5">
+                            {!isEducation && item.icon && <Icon icon={item.icon} className="text-blue-600 dark:text-blue-400 text-xl hidden md:block" />}
+                            <span className="text-blue-600 dark:text-blue-300 font-mono text-sm border border-blue-500/30 px-2 py-1 rounded bg-blue-500/10">
                                 {item.year}
                             </span>
-                            {isEducation && item.icon && <Icon icon={item.icon} className="text-blue-500 text-xl hidden md:block" />}
+                            {isEducation && item.icon && <Icon icon={item.icon} className="text-blue-600 dark:text-blue-400 text-xl hidden md:block" />}
                         </div>
 
-                        <h3 className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors">
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors">
                             {item.title || item.name}
                         </h3>
 
                         {item.institution && (
-                            <h4 className="text-gray-400 text-sm font-medium">
+                            <h4 className="text-gray-600 dark:text-gray-400 text-sm font-medium">
                                 {item.institution}
                             </h4>
                         )}
 
-                        <p className="text-gray-500 text-sm mt-2 leading-relaxed">
+                        <p className="text-gray-600 dark:text-gray-500 text-sm mt-2 leading-relaxed">
                             {item.description}
                         </p>
                     </div>
@@ -45,7 +45,7 @@ const TimelineItem = ({ item, type, index }) => {
 
             {/* Timeline Center Point - Hidden on Mobile */}
             <div className="absolute left-1/2 transform -translate-x-1/2 hidden md:flex items-center justify-center">
-                <div className="w-4 h-4 rounded-full bg-blue-600 border-4 border-gray-900 z-10 shadow-[0_0_10px_rgba(37,99,235,0.5)]"></div>
+                <div className="w-4 h-4 rounded-full bg-blue-500 border-4 border-gray-900 z-10 shadow-[0_0_10px_rgba(37,99,235,0.5)]"></div>
             </div>
 
             {/* Empty Space for the other side - Hidden on Mobile */}
@@ -87,15 +87,15 @@ export default function Journey() {
                 viewport={{ once: true }}
                 className="text-center mb-16 relative z-10"
             >
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                    My <span className="text-blue-500">Journey</span>
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+                    My <span className="text-blue-600 dark:text-blue-400">Journey</span>
                 </h2>
 
             </motion.div>
 
             <div className="w-full max-w-6xl relative">
 
-                <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500/0 via-blue-500/50 to-purple-500/0 hidden md:block"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500/0 via-blue-500/50 to-blue-500/0 hidden md:block"></div>
 
 
                 <div className="relative mb-12">
@@ -104,8 +104,8 @@ export default function Journey() {
                         whileInView={{ opacity: 1 }}
                         className="flex justify-center md:justify-start md:ml-[calc(50%-80px)] md:mb-8 mb-6"
                     >
-                        <h3 className="text-2xl font-bold text-white bg-gray-900/80 px-4 py-2 rounded-lg border border-white/10 backdrop-blur-sm inline-flex items-center gap-2">
-                            <Icon icon="mdi:school" className="text-purple-400" /> Education
+                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white bg-white/80 dark:bg-gray-900/80 px-4 py-2 rounded-lg border border-gray-200 dark:border-white/10 backdrop-blur-sm inline-flex items-center gap-2">
+                            <Icon icon="mdi:school" className="text-purple-500 dark:text-purple-400" /> Education
                         </h3>
                     </motion.div>
 
@@ -113,7 +113,7 @@ export default function Journey() {
                         {education.map((edu, index) => (
                             <TimelineItem key={edu.id || index} item={edu} type="education" index={index} />
                         ))}
-                        {education.length === 0 && <p className="text-gray-500 text-center italic">Loading Education data...</p>}
+                        {education.length === 0 && <p className="text-gray-500 dark:text-gray-400 text-center italic">Loading Education data...</p>}
                     </div>
                 </div>
 
@@ -124,8 +124,8 @@ export default function Journey() {
                         whileInView={{ opacity: 1 }}
                         className="flex justify-center md:justify-end md:mr-[calc(50%-80px)] md:mb-8 mb-6"
                     >
-                        <h3 className="text-2xl font-bold text-white bg-gray-900/80 px-4 py-2 rounded-lg border border-white/10 backdrop-blur-sm inline-flex items-center gap-2">
-                            <Icon icon="mdi:briefcase" className="text-blue-400" /> Experience
+                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white bg-white/80 dark:bg-gray-900/80 px-4 py-2 rounded-lg border border-gray-200 dark:border-white/10 backdrop-blur-sm inline-flex items-center gap-2">
+                            <Icon icon="mdi:briefcase" className="text-blue-600 dark:text-blue-400" /> Experience
                         </h3>
                     </motion.div>
 
@@ -133,7 +133,7 @@ export default function Journey() {
                         {experience.map((exp, index) => (
                             <TimelineItem key={exp._id || exp.id || index} item={exp} type="experience" index={index} />
                         ))}
-                        {experience.length === 0 && <p className="text-gray-500 text-center italic">Loading Experience data...</p>}
+                        {experience.length === 0 && <p className="text-gray-400 text-center italic">Loading Experience data...</p>}
                     </div>
                 </div>
 

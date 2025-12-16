@@ -31,7 +31,7 @@ const Footer = () => {
     };
 
     return (
-        <footer className="relative bg-black/20 backdrop-blur-lg border-t border-white/5 mt-20 overflow-hidden">
+        <footer className="relative bg-white/80 dark:bg-black/20 backdrop-blur-lg border-t border-gray-200 dark:border-neutral-900/40 mt-20 overflow-hidden">
             {/* Background Glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
 
@@ -40,10 +40,10 @@ const Footer = () => {
 
                     {/* Brand & Copyright */}
                     <div className="text-center md:text-left">
-                        <h3 className="text-2xl font-bold text-white mb-2">
+                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                             Jasvanth
                         </h3>
-                        <p className="text-gray-400 text-sm">
+                        <p className="text-gray-500 text-sm">
                             © {currentYear} All rights reserved.
                         </p>
                     </div>
@@ -56,7 +56,7 @@ const Footer = () => {
                                 href={link.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-gray-400 hover:text-blue-500 transition-colors duration-300 transform hover:scale-110"
+                                className="text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 transform hover:scale-110"
                                 aria-label={link.name}
                             >
                                 <Icon icon={link.icon} className="text-2xl" />
@@ -67,7 +67,7 @@ const Footer = () => {
                     {/* Back to Top */}
                     <button
                         onClick={scrollToTop}
-                        className="group flex items-center gap-2 text-gray-400 hover:text-white transition-colors duration-300"
+                        className="group flex items-center gap-2 text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors duration-300"
                     >
                         <span className="text-sm font-medium">Back to Top</span>
                         <Icon

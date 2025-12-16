@@ -65,10 +65,10 @@ export default function Projects() {
                     transition={{ duration: 0.5 }}
                     className="text-center mb-20"
                 >
-                    <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-                        Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Projects</span>
+                    <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+                        Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-300 dark:to-gray-300">Projects</span>
                     </h2>
-                    <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                    <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
                         Explore a collection of my recent work, showcasing my journey in web development and design.
                     </p>
                 </motion.div>
@@ -85,8 +85,8 @@ export default function Projects() {
                         >
 
                             <div className="w-full md:w-1/2 relative group">
-                                <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-500" />
-                                <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-gray-900 shadow-2xl">
+                                <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-white rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-500" />
+                                <div className="relative rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-900 shadow-2xl">
                                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
                                     <img
                                         src={project.thumbnail || 'https://via.placeholder.com/600x400'}
@@ -124,11 +124,11 @@ export default function Projects() {
 
 
                             <div className="w-full md:w-1/2 text-center md:text-left">
-                                <h3 className="text-3xl font-bold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+                                <h3 className="text-3xl font-bold mb-4 text-gray-900 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-gray-200 dark:to-gray-400">
                                     {project.title || 'Untitled Project'}
                                 </h3>
 
-                                <p className="text-gray-400 text-lg mb-6 leading-relaxed">
+                                <p className="text-gray-600 dark:text-gray-400 text-lg mb-6 leading-relaxed">
                                     {project.description || 'No description available.'}
                                 </p>
 
@@ -145,7 +145,7 @@ export default function Projects() {
                                         return tagsArray.map((tag, i) => (
                                             <span
                                                 key={i}
-                                                className="px-3 py-1 text-sm bg-blue-500/10 text-blue-300 border border-blue-500/20 rounded-full"
+                                                className="px-3 py-1 text-sm bg-blue-500/10 text-blue-600 dark:text-blue-300 border border-blue-500/20 rounded-full"
                                             >
                                                 {typeof tag === 'string' ? tag.trim() : tag}
                                             </span>
@@ -154,14 +154,14 @@ export default function Projects() {
                                 </div>
 
 
-                                <div className="flex items-center gap-6 justify-center md:justify-start text-gray-500 text-sm">
+                                <div className="flex items-center gap-6 justify-center md:justify-start text-gray-500 dark:text-gray-400 text-sm">
                                     <div className="flex items-center gap-2">
-                                        <Icon icon="fluent:people-team-20-regular" className="text-lg text-blue-400" />
+                                        <Icon icon="fluent:people-team-20-regular" className="text-lg text-blue-500 dark:text-blue-400" />
                                         <span>{project.team || 'Solo Project'}</span>
                                     </div>
-                                    <div className="w-1 h-1 bg-gray-700 rounded-full" />
+                                    <div className="w-1 h-1 bg-gray-400 dark:bg-gray-700 rounded-full" />
                                     <div className="flex items-center gap-2">
-                                        <Icon icon="mdi:code-tags" className="text-lg text-purple-400" />
+                                        <Icon icon="mdi:code-tags" className="text-lg text-purple-500 dark:text-purple-400" />
                                         <span>Full Stack</span>
                                     </div>
                                 </div>

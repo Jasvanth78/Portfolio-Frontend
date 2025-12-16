@@ -105,7 +105,7 @@ export default function AdminSkills() {
                             <img src={skill.image} alt={skill.name} className="w-12 h-12 object-contain" />
                             <div>
                                 <p className="font-bold">{skill.name}</p>
-                                <span className="text-xs bg-gray-700 px-2 py-1 rounded text-gray-300">{skill.category || 'frontend'}</span>
+                                <span className="text-xs bg-gray-200 px-2 py-1 rounded text-gray-800">{skill.category || 'frontend'}</span>
                             </div>
                         </div>
                         <button onClick={() => handleDelete(skill.id)} className="text-red-500 hover:text-red-400">Delete</button>
