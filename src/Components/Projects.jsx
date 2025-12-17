@@ -7,11 +7,24 @@ import { useNavigate } from 'react-router-dom';
 const ProjectImage = ({ project }) => {
     const [imgError, setImgError] = useState(false);
 
-    // Construct valid image source
+
     const imgSource = (() => {
-        if (!project.thumbnail) return null;
-        if (project.thumbnail.startsWith('http')) return project.thumbnail;
-        return `${API_BASE_URL}${project.thumbnail}`;
+        const imgPath = project.image || project.thumbnail;
+        if (!imgPath) {
+            console.warn('Project missing image path:', project);
+            return null;
+        }
+        if (imgPath.startsWith('http')) return imgPath;
+
+      
+        const baseUrl = API_BASE_URL.endsWith('/') ? API_BASE_URL.slice(0, -1) : API_BASE_URL;
+        const normalizedPath = imgPath.startsWith('/') ? imgPath : `/${imgPath}`;
+        const finalUrl = `${baseUrl}${normalizedPath}`;
+
+        
+        console.log('Constructed Image URL:', finalUrl);
+
+        return finalUrl;
     })();
 
     if (imgError || !imgSource) {
@@ -26,7 +39,10 @@ const ProjectImage = ({ project }) => {
         <img
             src={imgSource}
             alt={project.title}
-            onError={() => setImgError(true)}
+            onError={(e) => {
+                console.error('Image load error:', imgSource, e);
+                setImgError(true);
+            }}
             className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
         />
     );
@@ -35,6 +51,8 @@ const ProjectImage = ({ project }) => {
 export default function Projects({ isPreview = false }) {
     const [projects, setProjects] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const projectsPerPage = 17;
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -75,7 +93,18 @@ export default function Projects({ isPreview = false }) {
         setCurrentIndex(prev => (prev - 1 + projects.length) % projects.length);
     };
 
-    const displayedProjects = isPreview ? (projects.length > 0 ? [projects[currentIndex]] : []) : projects;
+    // Pagination Logic
+    const indexOfLastProject = currentPage * projectsPerPage;
+    const indexOfFirstProject = indexOfLastProject - projectsPerPage;
+
+    const displayedProjects = isPreview
+        ? (projects.length > 0 ? [projects[currentIndex]] : [])
+        : projects.slice(indexOfFirstProject, indexOfLastProject);
+
+    const totalPages = Math.ceil(projects.length / projectsPerPage);
+
+    const goToPreviousPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
+    const goToNextPage = () => setCurrentPage((prev) => Math.min(prev + 1, totalPages));
 
     return (
         <div className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden" id="projects">
@@ -195,9 +224,39 @@ export default function Projects({ isPreview = false }) {
                     ))}
                 </div>
 
+                {!isPreview && projects.length > projectsPerPage && (
+                    <div className="flex justify-center items-center gap-4 mt-16">
+                        <button
+                            onClick={goToPreviousPage}
+                            disabled={currentPage === 1}
+                            className={`px-6 py-3 rounded-xl font-medium transition-all ${currentPage === 1
+                                ? 'bg-gray-100 text-gray-400 cursor-not-allowed dark:bg-gray-800 dark:text-gray-600'
+                                : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 shadow-sm dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 dark:hover:bg-gray-700'
+                                }`}
+                        >
+                            Previous
+                        </button>
+
+                        <span className="text-gray-600 dark:text-gray-400 font-medium">
+                            Page {currentPage} of {totalPages}
+                        </span>
+
+                        <button
+                            onClick={goToNextPage}
+                            disabled={currentPage === totalPages}
+                            className={`px-6 py-3 rounded-xl font-medium transition-all ${currentPage === totalPages
+                                ? 'bg-gray-100 text-gray-400 cursor-not-allowed dark:bg-gray-800 dark:text-gray-600'
+                                : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 shadow-sm dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 dark:hover:bg-gray-700'
+                                }`}
+                        >
+                            Next
+                        </button>
+                    </div>
+                )}
+
                 {isPreview && Array.isArray(projects) && projects.length > 1 && (
                     <div className="flex justify-center mt-20 relative z-30">
-                        {/* Optional: Add Dots Indicator */}
+
                         <div className="absolute -top-10 flex gap-2">
                             {projects.map((_, idx) => (
                                 <button
