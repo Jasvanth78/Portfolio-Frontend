@@ -117,8 +117,8 @@ export default function Skill() {
                     <span className="text-gray-900 dark:text-white text-2xl">{lastPart}</span>
                 </h3>
                 <div className="relative w-full max-w-7xl mx-auto">
-                    <div className="relative w-full flex items-center justify-center" style={{ height: '160px', overflow: 'hidden' }}>
-                        <div className="w-full mask-linear-fade">
+                    <div className="relative w-full flex items-center justify-center ps-4 pe-4" style={{ height: '240px' }}>
+                        <div className="w-full h-full mask-linear-fade">
                             <LogoLoop
                                 logos={skills}
                                 speed={35}
@@ -130,6 +130,7 @@ export default function Skill() {
                                 fadeOut={true}
                                 ariaLabel={`${title} logos`}
                                 renderItem={(item) => <SkillCard item={item} />}
+                                className="h-full flex items-center"
                             />
                         </div>
                     </div>
@@ -205,10 +206,10 @@ export default function Skill() {
             >
                 <button
                     onClick={() => setIsExpanded(!isExpanded)}
-                    className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 text-white p-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-blue-500/25 transform hover:-translate-y-1 flex items-center justify-center"
+                    className="bg-black hover:bg-blue-700 dark:bg-white dark:hover:bg-blue-600 text-white p-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-blue-500/25 transform hover:-translate-y-1 flex items-center justify-center"
                     title={isExpanded ? "Show Less" : "Show All"}
                 >
-                    <span className="text-2xl">
+                    <span className="text-2xl dark:text-black">
                         {isExpanded ? <Icon icon="ic:round-arrow-drop-up" /> : <Icon icon="ic:round-arrow-drop-down" />}
                     </span>
                 </button>

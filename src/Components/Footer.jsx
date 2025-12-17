@@ -32,13 +32,13 @@ const Footer = () => {
 
     return (
         <footer className="relative bg-white/80 dark:bg-black/20 backdrop-blur-lg border-t border-gray-200 dark:border-neutral-900/40 mt-20 overflow-hidden">
-          
+
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
 
-                    
+
                     <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-4">
                         <div className="flex items-center gap-2">
                             <Icon icon="mdi:code-braces" className="text-3xl text-blue-600 dark:text-blue-500" />
@@ -51,31 +51,35 @@ const Footer = () => {
                         </p>
                     </div>
 
-                    
+
                     <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-4">
                         <h4 className="text-lg font-bold text-gray-900 dark:text-white">Quick Links</h4>
                         <ul className="space-y-2">
                             {[
-                                { name: 'Home', href: '#home' },
-                                
-                                { name: 'Skills', href: '#skill' },
-                                { name: 'Journey', href: '#journey' },
-                                { name: 'Projects', href: '#projects' },
-                                { name: 'Contact', href: '#contact' }
+                                { name: 'Home', id: 'home' },
+                                { name: 'Skills', id: 'skill' },
+                                { name: 'Journey', id: 'journey' },
+                                { name: 'Projects', id: 'projects' },
+                                { name: 'Contact', id: 'contact' }
                             ].map((link) => (
                                 <li key={link.name}>
-                                    <a
-                                        href={link.href}
-                                        className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                                    <button
+                                        onClick={() => {
+                                            const element = document.getElementById(link.id);
+                                            if (element) {
+                                                element.scrollIntoView({ behavior: 'smooth' });
+                                            }
+                                        }}
+                                        className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm text-left"
                                     >
                                         {link.name}
-                                    </a>
+                                    </button>
                                 </li>
                             ))}
                         </ul>
                     </div>
 
-                  
+
                     <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-4">
                         <h4 className="text-lg font-bold text-gray-900 dark:text-white">Connect</h4>
                         <div className="flex gap-4">

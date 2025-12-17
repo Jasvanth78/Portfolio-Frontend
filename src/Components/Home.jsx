@@ -25,8 +25,8 @@ export default function Home() {
 
     return (
         <div className="relative w-full min-h-screen overflow-hidden" id="home">
-
-            {/* <div className="absolute inset-0 z-0">
+{/* 
+            <div className="absolute inset-0 z-0 hidden light:block dark:visible">
                 <Particles
                     particleColors={['#ffffff', '#ffffff']}
                     particleCount={300}
@@ -87,8 +87,8 @@ export default function Home() {
 
 
                             <div className="flex justify-center md:justify-start gap-4 mt-4">
-                                <button onClick={() => navigate('/contact')} className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-md transition duration-300 flex items-center gap-2 cursor-pointer shadow-lg hover:shadow-blue-500/50 sm:py-3">
-                                    <Icon icon="bitcoin-icons:share-filled" className='text-xl' href='#contact' /> Get In Touch
+                                <button onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-md transition duration-300 flex items-center gap-2 cursor-pointer shadow-lg hover:shadow-blue-500/50 sm:py-3">
+                                    <Icon icon="bitcoin-icons:share-filled" className='text-xl' /> Get In Touch
                                 </button>
 
                                 <button onClick={() => window.open('https://drive.google.com/file/d/1FXmnknxxVOH5JkpP9347dPuNOaAFDthI/view', '_blank')} className="bg-white hover:bg-gray-200 text-gray-900 py-2 px-6 rounded-md transition duration-300 cursor-pointer flex items-center gap-2 shadow-lg hover:shadow-white/50">

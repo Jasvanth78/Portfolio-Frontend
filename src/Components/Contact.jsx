@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 export default function Contact() {
     return (
         <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden" id="contact">
-            {/* Background Elements */}
+            
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
                 <div className="absolute top-[20%] left-[20%] w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[120px]" />
                 <div className="absolute bottom-[20%] right-[20%] w-[500px] h-[500px] bg-purple-600/5 rounded-full blur-[120px]" />
