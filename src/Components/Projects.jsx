@@ -142,7 +142,7 @@ export default function Projects({ isPreview = false }) {
 
                             <div className="w-full md:w-1/2 relative group">
                                 <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-white rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-500" />
-                                <div className="relative rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-900 shadow-2xl">
+                                <div className="relative rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-900 shadow-2xl w-full h-96">
                                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
 
                                     <ProjectImage project={project} />
