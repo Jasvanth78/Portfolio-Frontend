@@ -10,21 +10,19 @@ const ProjectImage = ({ project }) => {
 
     const imgSource = (() => {
         const imgPath = project.image || project.thumbnail;
-        if (!imgPath) {
-            console.warn('Project missing image path:', project);
-            return null;
-        }
+        if (!imgPath) return null;
+
         if (imgPath.startsWith('http')) return imgPath;
 
-      
         const baseUrl = API_BASE_URL.endsWith('/') ? API_BASE_URL.slice(0, -1) : API_BASE_URL;
-        const normalizedPath = imgPath.startsWith('/') ? imgPath : `/${imgPath}`;
-        const finalUrl = `${baseUrl}${normalizedPath}`;
 
-        
-        console.log('Constructed Image URL:', finalUrl);
+        // Ensure the path starts with /uploads/ if it's a local filename
+        let normalizedPath = imgPath.startsWith('/') ? imgPath : `/${imgPath}`;
+        if (!normalizedPath.startsWith('/uploads/')) {
+            normalizedPath = `/uploads${normalizedPath}`;
+        }
 
-        return finalUrl;
+        return `${baseUrl}${normalizedPath}`;
     })();
 
     if (imgError || !imgSource) {
@@ -93,7 +91,7 @@ export default function Projects({ isPreview = false }) {
         setCurrentIndex(prev => (prev - 1 + projects.length) % projects.length);
     };
 
-    
+
     const indexOfLastProject = currentPage * projectsPerPage;
     const indexOfFirstProject = indexOfLastProject - projectsPerPage;
 

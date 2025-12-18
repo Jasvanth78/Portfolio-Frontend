@@ -65,8 +65,24 @@ export default function Skill() {
         fetch(`${API_BASE_URL}/api/skills`)
             .then(res => res.json())
             .then(data => {
+                const baseUrl = API_BASE_URL.endsWith('/') ? API_BASE_URL.slice(0, -1) : API_BASE_URL;
+
+                const toAbsoluteUrl = (imgPath) => {
+                    if (!imgPath) return null;
+                    
+                    if (typeof imgPath === 'string' && imgPath.startsWith('http')) return imgPath;
+
+                  
+                    let normalized = imgPath.startsWith('/') ? imgPath : `/${imgPath}`;
+                  
+                    if (!normalized.startsWith('/uploads/')) {
+                        normalized = `/uploads${normalized}`;
+                    }
+                    return `${baseUrl}${normalized}`;
+                };
+
                 const formatted = data.map(skill => ({
-                    src: skill.image,
+                    src: toAbsoluteUrl(skill.image),
                     alt: skill.name,
                     title: skill.name,
                     category: skill.category || 'frontend' || 'backend' || 'tools'
