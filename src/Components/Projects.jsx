@@ -93,7 +93,7 @@ export default function Projects({ isPreview = false }) {
         setCurrentIndex(prev => (prev - 1 + projects.length) % projects.length);
     };
 
-    // Pagination Logic
+    
     const indexOfLastProject = currentPage * projectsPerPage;
     const indexOfFirstProject = indexOfLastProject - projectsPerPage;
 
