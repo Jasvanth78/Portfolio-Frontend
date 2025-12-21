@@ -86,7 +86,7 @@ export default function ContactPage() {
                                         onChange={handleChange}
                                         required
                                         className="w-full px-4 py-3 bg-gray-900/40 border border-gray-700/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
-                                        placeholder="John Doe"
+                                        placeholder="Enter your Name"
                                     />
                                 </div>
                                 <div>
@@ -98,7 +98,7 @@ export default function ContactPage() {
                                         onChange={handleChange}
                                         required
                                         className="w-full px-4 py-3 bg-gray-900/40 border border-gray-700/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
-                                        placeholder="john@example.com"
+                                        placeholder="Enter your Email"
                                     />
                                 </div>
                             </div>
@@ -112,7 +112,7 @@ export default function ContactPage() {
                                     onChange={handleChange}
                                     required
                                     className="w-full px-4 py-3 bg-gray-900/40 border border-gray-700/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all resize-none"
-                                    placeholder="Tell me about your project..."
+                                    placeholder="Tell me about your project"
                                 />
                             </div>
 
